@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen w-full max-w-5xl mx-auto p-4 sm:p-6 flex flex-col justify-between items-center gap-6 bg-gradient-to-br from-blue-300/40 to-red-300/40">
+  <div class="min-h-screen w-full mx-auto p-4 sm:p-6 flex flex-col justify-between items-center gap-6 bg-gradient-to-br from-blue-300/40 to-red-300/40">
     <div class="w-full flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
       <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
         <p class="font-bold text-2xl sm:text-3xl text-black/80">Awawa Coins</p>
@@ -25,6 +25,7 @@
         <button @click="buyHyrax" class="w-full sm:w-auto text-center px-6 py-3 bg-gradient-to-br from-blue-500/60 to-yellow-300 text-black/70 font-bold rounded-full shadow-2xl hover:scale-105 transition-all duration-300">Купить еще даманов (100 Awawa Coins)</button>
       </div>
     </div>
+    <div></div>
   </div>
 </template>
 

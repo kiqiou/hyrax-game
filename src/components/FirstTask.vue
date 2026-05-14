@@ -28,7 +28,7 @@
 import AwawaCoin from '../assets/images/awawaCoin.jpg'
 import Leafs from '../assets/images/leafs.jpg'
 import Hyrax from '../assets/images/hyrax.jpg'
-import Hyraxes from '../assets/images/3hyrax.jpg'
+import Hyraxes from '../assets/images/hyraxes.jpg'
 import {ref} from 'vue'
 
 const name = ref('')

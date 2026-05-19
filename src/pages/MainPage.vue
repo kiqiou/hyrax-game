@@ -20,7 +20,7 @@
         <div class="relative w-full flex flex-col items-center justify-center">
           <img
             v-if="hyrax?.bought"
-            :src="hyrax.url"
+            :src="Hyraxes"
             @click="walletStore.addCoins"
             class="w-full max-w-[180px] sm:max-w-[240px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300"
           />
@@ -66,6 +66,7 @@
 
 <script setup lang="ts">
 import Hyrax from "../assets/images/hyrax.jpg";
+import Hyraxes from "../assets/images/hyraxes.jpg";
 import { computed, ref } from "vue";
 import { useWalletStore } from "../stores/wallet";
 import { useShopStore } from "../stores/shop";

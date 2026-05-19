@@ -4,13 +4,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'first',
-    component: () => import('@/components/FirstTask.vue')
+    name: 'main',
+    component: () => import('@/components/pages/MainPage.vue')
   },
  {
-    path: '/secondTask',
-    name: 'second',
-    component: () => import('@/components/SecondTask.vue')
+    path: '/shop',
+    name: 'shop',
+    component: () => import('@/components/pages/Shop.vue')
   }
 ]
 

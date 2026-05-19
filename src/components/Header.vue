@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
+  <div class="flex flex-col sm:flex-row sm:items-center  gap-3 w-full sm:w-auto">
     <div class="flex items-center gap-2">
       <span
         class="text-3xl sm:text-4xl font-extrabold font-fun text-pink-400 drop-shadow-sm"
@@ -16,16 +16,16 @@
     </div>
 
     <div class="flex flex-row gap-5 justify-center items-center">
-      <RouterLink
-        to="/shop"
-        class="relative px-6 py-3 text-lg sm:text-xl font-extrabold text-white rounded-full bg-gradient-to-r from-pink-300 via-yellow-300 to-orange-300 shadow-lg shadow-orange-300/50 hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/40 overflow-hidden"
-      >
-        <span class="relative z-10">SHOP</span>
-
-        <span
-          class="absolute inset-0 bg-white/20 blur-xl opacity-0 hover:opacity-100 transition"
-        />
-      </RouterLink>
+        <RouterLink
+        :to="isShop ? '/' : '/shop'"
+        class="relative px-6 py-3 text-lg font-bold text-white rounded-full
+                bg-gradient-to-r from-pink-300 via-yellow-300 to-orange-300
+                shadow-lg hover:scale-110 active:scale-95 transition"
+        >
+        <span class="relative z-10">
+            {{ isShop ? 'HOME' : 'SHOP' }}
+        </span>
+        </RouterLink>
     </div>
     </div>
     
@@ -33,8 +33,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useWalletStore } from "../stores/wallet";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute} from "vue-router";
+
+const route = useRoute()
 
 const walletStore = useWalletStore();
+
+const isShop = computed(() => route.path === '/shop')
 </script>

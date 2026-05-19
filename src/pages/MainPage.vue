@@ -1,10 +1,10 @@
 <template>
   <div
-    class="min-h-screen w-full mx-auto p-4 sm:p-6 flex flex-col justify-between items-center bg-gradient-to-br from-blue-300/40 to-red-300/40"
+    class="min-h-screen p-4 sm:p-6 flex flex-col justify-between bg-gradient-to-br from-blue-300/40 to-red-300/40"
   >
     <Header />
 
-    <div class="w-full max-w-3xl flex flex-col gap-4 items-center">
+    <div class="flex w-full flex flex-col gap-4 items-center">
       <p class="font-bold text-xl sm:text-2xl text-black/80">
         Hyrax name:
       </p>

@@ -1,18 +1,13 @@
 <template>
-  <div class="relative w-full min-h-screen overflow-auto bg-black">
+  <div class="relative w-full min-h-screen overflow-x-auto overflow-y-hidden bg-white">
+    <Header class="p-4"></Header>
     <img
       src="@/assets/images/shop.jpg"
       alt="shop"
-      class="min-w-[1400px] w-full h-auto select-none"
+      class="min-w-[1400px] w-full h-full select-none"
       draggable="false"
     />
 
-    <RouterLink
-      to="/"
-      class="absolute top-5 left-5 text-white bg-black/50 backdrop-blur-sm rounded-full px-4 py-2 font-bold shadow-lg hover:bg-black/70 transition-colors duration-300"
-    >
-      <- Back
-    </RouterLink>
     <div
       v-for="value in shopStore.items"
       :key="value.id"
@@ -60,6 +55,7 @@
 </template>
 
 <script setup lang="ts">
+import Header from "../components/Header.vue";
 import { useShopStore } from "../stores/shop";
 import { useWalletStore } from "../stores/wallet";
 

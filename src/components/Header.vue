@@ -17,13 +17,13 @@
 
     <div class="flex flex-row gap-5 justify-center items-center">
         <RouterLink
-        :to="isShop ? '/' : '/shop'"
+        :to="isNotHome ? '/' : '/shop'"
         class="relative px-6 py-3 text-lg font-bold text-white rounded-full
                 bg-gradient-to-r from-pink-300 via-yellow-300 to-orange-300
                 shadow-lg hover:scale-110 active:scale-95 transition"
         >
         <span class="relative z-10">
-            {{ isShop ? 'HOME' : 'SHOP' }}
+            {{ isNotHome ? 'HOME' : 'SHOP' }}
         </span>
         </RouterLink>
     </div>
@@ -41,5 +41,5 @@ const route = useRoute()
 
 const walletStore = useWalletStore();
 
-const isShop = computed(() => route.path === '/shop')
+const isNotHome = computed(() => route.path !== '/')
 </script>

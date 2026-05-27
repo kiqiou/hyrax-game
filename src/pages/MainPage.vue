@@ -58,6 +58,13 @@
         >
           Купить множитель (50 Awawa Coins)
         </button>
+        <RouterLink to="/forest">
+           <button
+            class="w-full sm:w-auto text-center px-6 py-3 bg-gradient-to-br from-green-500/60 to-yellow-300 text-black/70 font-bold rounded-full shadow-2xl hover:scale-105 transition-all duration-300"
+          >
+            Сводить дамана погулять
+          </button>
+        </RouterLink>
       </div>
     </div>
     <div></div>

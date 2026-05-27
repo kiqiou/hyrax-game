@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import Hyrax from "../assets/images/hyrax.jpg";
+import Hyrax from "../assets/images/hyrax.png";
 import Hyraxes from "../assets/images/hyraxes.jpg";
 
 import { computed, onMounted, onBeforeUnmount } from "vue";
@@ -113,8 +113,6 @@ onBeforeUnmount(() => {
   border-radius: 24px;
 
   cursor: pointer;
-
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 
   transition: transform 0.2s;
 

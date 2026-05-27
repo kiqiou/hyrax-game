@@ -1,20 +1,26 @@
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import leafsImg from "@/assets/images/leafs.jpg";
 import hyraxImg from "@/assets/images/shop-hyrax.jpg";
 import bowImg from "@/assets/images/bow.jpg";
 import { useWalletStore } from "./wallet";
+import { STORAGE_KEYS } from "../utils/localStorage";
 
 export interface ShopItem {
   id: "leafs" | "hyrax" | "bow";
   label: string;
   price: number;
   url: string;
+  imageClass?: string;
   bought: boolean;
 
   x: number;
   y: number;
 }
+
+const savedBoughtItems = JSON.parse(
+  localStorage.getItem(STORAGE_KEYS.BOUGHT_ITEMS) || "[]"
+);
 
 export const useShopStore = defineStore("shop", () => {
   const items = ref<ShopItem[]>([
@@ -23,19 +29,10 @@ export const useShopStore = defineStore("shop", () => {
       label: "Листики",
       price: 30,
       url: leafsImg,
-      bought: false,
+      imageClass: "max-w-[130px] sm:max-w-[130px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300",
+      bought: savedBoughtItems.includes("leafs"),
 
       x: 100,
-      y: 300,
-    },
-    {
-      id: "hyrax",
-      label: "Еще даманы",
-      price: 100,
-      url: hyraxImg,
-      bought: false,
-
-      x: 300,
       y: 300,
     },
     {
@@ -43,7 +40,8 @@ export const useShopStore = defineStore("shop", () => {
       label: "Бантик",
       price: 150,
       url: bowImg,
-      bought: false,
+      imageClass: "absolute top-0 left-1/2 -translate-x-1/2 w-12",
+      bought: savedBoughtItems.includes("bow"),
 
       x: 530,
       y: 300,
@@ -82,8 +80,24 @@ export const useShopStore = defineStore("shop", () => {
   const availableItems = computed(() =>
     items.value.filter((item) => !item.bought),
   );
+
   const purchasedItems = computed(() =>
     items.value.filter((item) => item.bought),
+  );
+
+  watch(
+    items,
+    (value) => {
+      const boughtIds = value
+        .filter((item) => item.bought)
+        .map((item) => item.id);
+
+      localStorage.setItem(
+        STORAGE_KEYS.BOUGHT_ITEMS,
+        JSON.stringify(boughtIds)
+      );
+    },
+    { deep: true }
   );
 
   return {

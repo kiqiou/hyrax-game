@@ -11,7 +11,7 @@
       <p
         class="font-bold text-2xl sm:text-4xl text-black/80 text-center break-words"
       >
-        {{ name }}
+        {{ hyraxName }}
       </p>
 
       <div
@@ -19,32 +19,21 @@
       >
         <div class="relative w-full flex flex-col items-center justify-center">
           <img
-            v-if="hyrax?.bought"
-            :src="Hyraxes"
-            @click="walletStore.addCoins"
-            class="w-full max-w-[180px] sm:max-w-[240px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300"
-          />
-          <img
-            v-else
             :src="Hyrax"
             @click="walletStore.addCoins"
             class="w-full max-w-[180px] sm:max-w-[240px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300"
           />
-          <img
-            v-if="leafs?.bought"
-            :src="leafs.url"
-            class="max-w-[130px] sm:max-w-[130px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300"
-          />
-          <img
-            v-if="bow?.bought"
-            :src="bow.url"
-            class="absolute top-0 left-1/2 -translate-x-1/2 w-12"
+         <img
+            v-for="item in shop.purchasedItems"
+            :key="item.id"
+            :src="item.url"
+            :class="item.imageClass"
           />
         </div>
       </div>
 
       <input
-        v-model="name"
+        v-model="hyraxName"
         placeholder="Введите имя"
         class="w-full max-w-md bg-gradient-to-br from-blue-300/40 to-red-300/40 rounded-2xl p-3 text-center placeholder:text-black/50"
       />
@@ -72,21 +61,24 @@
 </template>
 
 <script setup lang="ts">
-import Hyrax from "../assets/images/hyrax.jpg";
-import Hyraxes from "../assets/images/hyraxes.jpg";
-import { computed, ref } from "vue";
+import Hyrax from "../assets/images/hyraxWithBackground.jpg";
+import { computed, ref, watch } from "vue";
 import { useWalletStore } from "../stores/wallet";
 import { useShopStore } from "../stores/shop";
 import Header from "../components/Header.vue";
+import { STORAGE_KEYS } from "../utils/localStorage.ts";
 
-const name = ref("");
+const hyraxName = ref(
+  localStorage.getItem(STORAGE_KEYS.HYRAX_NAME) || "Awawa"
+);
 
 const walletStore = useWalletStore();
 const shop = useShopStore();
 
-const leafs = computed(() => shop.items.find((i) => i.id === "leafs"));
-
-const hyrax = computed(() => shop.items.find((i) => i.id === "hyrax"));
-
-const bow = computed(() => shop.items.find((i) => i.id === "bow"));
+watch(hyraxName, (value) => {
+  localStorage.setItem(
+    STORAGE_KEYS.HYRAX_NAME,
+    value
+  );
+});
 </script>

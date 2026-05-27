@@ -1,10 +1,15 @@
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { ref, watch } from "vue";
+import { STORAGE_KEYS } from "../utils/localStorage";
 
 export const useWalletStore = defineStore("wallet", () => {
-  const wallet = ref(0);
-  const coinsPerClick = 100;
-  const coinsClickMultiplier = ref(1);
+  const wallet = ref(
+    Number(localStorage.getItem(STORAGE_KEYS.WALLET)) || 0
+  );
+  const coinsPerClick = 1;
+    const coinsClickMultiplier = ref(
+    Number(localStorage.getItem(STORAGE_KEYS.MULTIPLIER)) || 1
+  );
 
   const addCoins = () => {
     wallet.value += coinsPerClick * coinsClickMultiplier.value;
@@ -27,6 +32,20 @@ export const useWalletStore = defineStore("wallet", () => {
     wallet.value -= amount;
     return true;
   };
+
+  watch(wallet, (value) => {
+    localStorage.setItem(
+      STORAGE_KEYS.WALLET,
+      value.toString()
+    );
+  });
+
+  watch(coinsClickMultiplier, (value) => {
+    localStorage.setItem(
+      STORAGE_KEYS.MULTIPLIER,
+      value.toString()
+    );
+  });
 
   return {
     wallet,

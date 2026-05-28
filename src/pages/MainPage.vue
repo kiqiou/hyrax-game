@@ -28,7 +28,7 @@
             ✏️
           </button>
         </div>
-        <div class="relative top-30 flex items-center justify-center">
+        <div class="relative top-20 flex items-center justify-center">
           <div
             class="flex flex-col gap-2 animate-[float_3s_ease-in-out_infinite]"
           >

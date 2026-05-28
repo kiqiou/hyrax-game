@@ -1,8 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, ref, watch } from "vue";
 import leafsImg from "@/assets/images/leafs.jpg";
-import hyraxImg from "@/assets/images/shop-hyrax.jpg";
-import bowImg from "@/assets/images/bow.jpg";
+import bowImg from "@/assets/images/bow.png";
 import { useWalletStore } from "./wallet";
 import { STORAGE_KEYS } from "../utils/localStorage";
 
@@ -19,7 +18,7 @@ export interface ShopItem {
 }
 
 const savedBoughtItems = JSON.parse(
-  localStorage.getItem(STORAGE_KEYS.BOUGHT_ITEMS) || "[]"
+  localStorage.getItem(STORAGE_KEYS.BOUGHT_ITEMS) || "[]",
 );
 
 export const useShopStore = defineStore("shop", () => {
@@ -29,7 +28,8 @@ export const useShopStore = defineStore("shop", () => {
       label: "Листики",
       price: 30,
       url: leafsImg,
-      imageClass: "max-w-[130px] sm:max-w-[130px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300",
+      imageClass:
+        "max-w-[130px] sm:max-w-[130px] rounded-3xl shadow-xl cursor-pointer active:scale-95 transition-all duration-300",
       bought: savedBoughtItems.includes("leafs"),
 
       x: 100,
@@ -40,7 +40,7 @@ export const useShopStore = defineStore("shop", () => {
       label: "Бантик",
       price: 150,
       url: bowImg,
-      imageClass: "absolute top-0 left-1/2 -translate-x-1/2 w-12",
+      imageClass: "absolute top-8 left-14 -translate-x-1/2 w-16",
       bought: savedBoughtItems.includes("bow"),
 
       x: 530,
@@ -94,10 +94,10 @@ export const useShopStore = defineStore("shop", () => {
 
       localStorage.setItem(
         STORAGE_KEYS.BOUGHT_ITEMS,
-        JSON.stringify(boughtIds)
+        JSON.stringify(boughtIds),
       );
     },
-    { deep: true }
+    { deep: true },
   );
 
   return {

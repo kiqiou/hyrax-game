@@ -3,12 +3,10 @@ import { ref, watch } from "vue";
 import { STORAGE_KEYS } from "../utils/localStorage";
 
 export const useWalletStore = defineStore("wallet", () => {
-  const wallet = ref(
-    Number(localStorage.getItem(STORAGE_KEYS.WALLET)) || 0
-  );
+  const wallet = ref(Number(localStorage.getItem(STORAGE_KEYS.WALLET)) || 0);
   const coinsPerClick = 1;
-    const coinsClickMultiplier = ref(
-    Number(localStorage.getItem(STORAGE_KEYS.MULTIPLIER)) || 1
+  const coinsClickMultiplier = ref(
+    Number(localStorage.getItem(STORAGE_KEYS.MULTIPLIER)) || 1,
   );
 
   const addCoins = () => {
@@ -34,17 +32,11 @@ export const useWalletStore = defineStore("wallet", () => {
   };
 
   watch(wallet, (value) => {
-    localStorage.setItem(
-      STORAGE_KEYS.WALLET,
-      value.toString()
-    );
+    localStorage.setItem(STORAGE_KEYS.WALLET, value.toString());
   });
 
   watch(coinsClickMultiplier, (value) => {
-    localStorage.setItem(
-      STORAGE_KEYS.MULTIPLIER,
-      value.toString()
-    );
+    localStorage.setItem(STORAGE_KEYS.MULTIPLIER, value.toString());
   });
 
   return {

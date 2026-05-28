@@ -8,35 +8,19 @@
     />
 
     <div
-      class="absolute inset-0 bg-gradient-to-br from-blue-300/30 to-red-300/30"
+      class="absolute inset-0 bg-gradient-to-br from-blue-300/10 to-red-300/30"
     />
 
-    <Header
-      class="absolute z-20 p-3 sm:p-4"
-    />
+    <Header class="absolute z-20 p-3 sm:p-4" />
 
     <div class="absolute inset-0">
       <div class="hyrax-path">
         <div class="hyrax-wrapper">
           <div class="relative">
             <img
-              v-if="hyrax?.bought"
-              :src="Hyraxes"
-              @click="walletStore.addCoins"
-              class="hyrax-image"
-            />
-
-            <img
-              v-else
               :src="Hyrax"
               @click="walletStore.addCoins"
               class="hyrax-image"
-            />
-
-            <img
-              v-if="bow?.bought"
-              :src="bow.url"
-              class="absolute top-0 left-1/2 -translate-x-1/2 w-10 sm:w-12"
             />
           </div>
         </div>
@@ -47,9 +31,8 @@
 
 <script setup lang="ts">
 import Hyrax from "../assets/images/hyrax.png";
-import Hyraxes from "../assets/images/hyraxes.jpg";
 
-import { computed, onMounted, onBeforeUnmount } from "vue";
+import { onMounted, onBeforeUnmount } from "vue";
 
 import { useWalletStore } from "../stores/wallet";
 import { useShopStore } from "../stores/shop";
@@ -57,18 +40,9 @@ import { useShopStore } from "../stores/shop";
 import Header from "../components/Header.vue";
 
 const walletStore = useWalletStore();
-const shop = useShopStore();
-
-const hyrax = computed(() =>
-  shop.items.find((i) => i.id === "hyrax")
-);
-
-const bow = computed(() =>
-  shop.items.find((i) => i.id === "bow")
-);
 
 const walkSound = new Audio(
-  new URL("../assets/sounds/forest.mp3", import.meta.url).href
+  new URL("../assets/sounds/forest.mp3", import.meta.url).href,
 );
 
 walkSound.volume = 0.4;
@@ -103,12 +77,11 @@ onBeforeUnmount(() => {
 
   width: clamp(140px, 18vw, 240px);
 
-  animation:
-    walkPath 18s linear infinite;
+  animation: walkPath 18s linear infinite;
 }
 
 .hyrax-image {
-  width: 100%;
+  width: 100% ;
 
   border-radius: 24px;
 
@@ -124,7 +97,6 @@ onBeforeUnmount(() => {
 .hyrax-image:active {
   transform: scale(0.96);
 }
-
 
 @keyframes walkPath {
   0% {
@@ -186,7 +158,7 @@ onBeforeUnmount(() => {
     top: 35%;
     transform: scaleX(-1);
   }
-  
+
   85% {
     left: 45%;
     top: 35%;
@@ -200,9 +172,9 @@ onBeforeUnmount(() => {
   }
 }
 
-
 @keyframes sniff {
-  0%, 100% {
+  0%,
+  100% {
     rotate: 0deg;
   }
 
@@ -223,9 +195,9 @@ onBeforeUnmount(() => {
   }
 }
 
-
 @keyframes roll {
-  0%, 58% {
+  0%,
+  58% {
     transform: rotate(0deg);
   }
 

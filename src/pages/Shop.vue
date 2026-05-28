@@ -1,5 +1,7 @@
 <template>
-  <div class="relative w-full min-h-screen overflow-x-auto overflow-y-hidden bg-white">
+  <div
+    class="relative w-full min-h-screen overflow-x-auto overflow-y-hidden bg-white"
+  >
     <Header class="p-4"></Header>
     <img
       src="@/assets/images/shop.jpg"

@@ -13,7 +13,7 @@
       <Header />
 
       <div class="flex flex-col items-center">
-        <div class="relative top-30 flex flex-row gap-1">
+        <div class="relative top-10 flex flex-row gap-1">
           <div
             class="rounded-full p-1 bg-white/55 backdrop-blur-xl border-2 border-white/60 shadow-xl"
           >
@@ -28,7 +28,7 @@
             ✏️
           </button>
         </div>
-        <div class="relative top-20 flex items-center justify-center">
+        <div class="relative top-10 flex items-center justify-center">
           <div
             class="flex flex-col gap-2 animate-[float_3s_ease-in-out_infinite]"
           >
